@@ -9,23 +9,22 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
+      # 这里更新到了 v4
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      # 使用 theos-action 自动配置环境
       - name: Setup Theos
         uses: Randomblock1/theos-action@v1
 
-      # 执行编译命令
       - name: Build Tweak
         run: |
           make package FINALPACKAGE=1
 
-      # 收集生成的 deb 包
+      # 这里更新到了 v4
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: DLGMemor-Package
           path: packages/*.deb
